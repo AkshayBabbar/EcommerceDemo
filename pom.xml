@@ -11,7 +11,12 @@
 
         <module>auth</module>
         <module>admin</module>
-        <module>common</module>
+        <module>demo</module>
+        <module>gateway</module>
+        <module>ormMapper</module>
+        <module>monitor</module>
+        <module>portal</module>
+        <module>search</module>
     </modules>
     <packaging>pom</packaging>
 
