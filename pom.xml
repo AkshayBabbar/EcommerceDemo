@@ -7,6 +7,12 @@
     <groupId>org.example</groupId>
     <artifactId>EcommerceDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+
+        <module>auth</module>
+        <module>admin</module>
+        <module>common</module>
+    </modules>
     <packaging>pom</packaging>
 
 
