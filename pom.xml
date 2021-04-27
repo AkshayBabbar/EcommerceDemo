@@ -11,6 +11,7 @@
 
         <module>auth</module>
         <module>admin</module>
+        <module>common</module>
         <module>demo</module>
         <module>gateway</module>
         <module>ormMapper</module>
@@ -54,8 +55,8 @@
         <minio.version>7.1.0</minio.version>
         <knife4j.version>2.0.4</knife4j.version>
         <nimbus-jose-jwt.version>8.16</nimbus-jose-jwt.version>
-        <mall-common.version>1.0-SNAPSHOT</mall-common.version>
-        <mall-mbg.version>1.0-SNAPSHOT</mall-mbg.version>
+        <common.version>1.0-SNAPSHOT</common.version>
+        <ormMapper.version>1.0-SNAPSHOT</ormMapper.version>
     </properties>
 
     <dependencies>
@@ -106,17 +107,15 @@
             </dependency>
             <!--mall通用模块-->
             <dependency>
-                <groupId>com.macro.mall</groupId>
-                <artifactId>mall-common</artifactId>
-                <version>${mall-common.version}</version>
+                <groupId>org.example</groupId>
+                <artifactId>common</artifactId>
+                <version>${common.version}</version>
             </dependency>
-            <!--mall中MBG生成模块-->
             <dependency>
-                <groupId>com.macro.mall</groupId>
-                <artifactId>mall-mbg</artifactId>
-                <version>${mall-mbg.version}</version>
+                <groupId>org.example</groupId>
+                <artifactId>ormMapper</artifactId>
+                <version>${ormMapper.version}</version>
             </dependency>
-            <!--MyBatis分页插件starter-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
