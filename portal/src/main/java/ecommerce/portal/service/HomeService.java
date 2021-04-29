@@ -9,12 +9,14 @@ import java.util.List;
 public interface HomeService {
     /**
      * Get homepage content
+     *
      * @return
      */
-     HomeContentResult content() ;
+    HomeContentResult content();
 
     /**
      * Home product recommendation
+     *
      * @param pageSize
      * @param pageNum
      * @return
@@ -22,7 +24,8 @@ public interface HomeService {
     List<PmsProduct> recommedProductList(Integer pageSize, Integer pageNum);
 
     /**
-     *  Paging to get topics according to topic classification
+     * Paging to get topics according to topic classification
+     *
      * @param categoryId Thematic category id
      * @param pageSize
      * @param pageNum
@@ -33,6 +36,7 @@ public interface HomeService {
 
     /**
      * Paging to get popular recommended products
+     *
      * @param pageNum
      * @param pageSize
      * @return
@@ -41,6 +45,7 @@ public interface HomeService {
 
     /**
      * Paging to get new recommended products
+     *
      * @param pageNum
      * @param pageSize
      * @return
