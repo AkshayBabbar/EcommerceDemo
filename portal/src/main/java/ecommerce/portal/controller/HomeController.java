@@ -8,14 +8,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import ormMapper.model.CmsSubject;
+import ormMapper.model.PmsProduct;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/home")
-
 @Api(tags = "HomeController")
 public class HomeController {
 
@@ -23,11 +23,43 @@ public class HomeController {
     private HomeService homeService;
 
     @ApiOperation("Homepage content page information display")
-    @RequestMapping(value = "/content", method = RequestMethod.GET)
+    @GetMapping(value = "/content")
     @ResponseBody
     public CommonResult<HomeContentResult> content() {
         HomeContentResult contentResult = homeService.content();
         return CommonResult.success(contentResult);
+    }
+
+    @ApiOperation("Paging to get recommended products")
+    @GetMapping(value = "/recommendedProduct")
+    @ResponseBody
+    public CommonResult<List<PmsProduct>> recommendProductList(@RequestParam(value = "pageSize", defaultValue = "4") Integer pageSize, @RequestParam(value = "pageNum", defaultValue = "4") Integer pageNum) {
+        List<PmsProduct> productList = homeService.recommedProductList(pageSize, pageNum);
+        return CommonResult.success(productList);
+    }
+
+    @ApiOperation("Get topics based on classification")
+    @GetMapping(value = "/subjectList")
+    @ResponseBody
+    public CommonResult<List<CmsSubject>> getSubjectList(@RequestParam(required = false) Long categoryId, @RequestParam(value = "pageSize", defaultValue = "4") Integer pageSize, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        List<CmsSubject> subjectList = homeService.getSubjectList(categoryId, pageSize, pageNum);
+        return CommonResult.success(subjectList);
+    }
+
+    @ApiOperation("Paging to get popular products recommended")
+    @GetMapping(value = "/hotProductList")
+    @ResponseBody
+    public CommonResult<List<PmsProduct>> hotProductList(@RequestParam(value = "pageSize", defaultValue = "6") Integer pageSize, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        List<PmsProduct> productList = homeService.hotProductList(pageNum, pageSize);
+        return CommonResult.success(productList);
+    }
+
+    @ApiOperation("Paging to get new products recommended")
+    @GetMapping(value = "/newProductList")
+    @ResponseBody
+    public CommonResult<List<PmsProduct>> newProductList(@RequestParam(value = "pageSize", defaultValue = "6") Integer pageSize, @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        List<PmsProduct> productList = homeService.newProductList(pageNum, pageSize);
+        return CommonResult.success(productList);
     }
 
 
