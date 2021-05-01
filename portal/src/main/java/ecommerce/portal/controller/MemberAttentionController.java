@@ -1,6 +1,6 @@
 package ecommerce.portal.controller;
 
-import ecommerce.common.api.CommonResult.CommonResult;
+import ecommerce.common.api.CommonResult;
 import ecommerce.portal.domain.MemberBrandAttention;
 import ecommerce.portal.service.MemberAttentionService;
 import io.swagger.annotations.ApiOperation;
@@ -47,7 +47,7 @@ public class MemberAttentionController {
     @ApiOperation("Get Details for Brand")
     @GetMapping("/details")
     @ResponseBody
-    public CommonResult<MemberBrandAttention> detail(@RequestParam Long brandId){
+    public CommonResult<MemberBrandAttention> detail(@RequestParam Long brandId) {
         MemberBrandAttention memberBrandAttention = memberAttentionService.detail(brandId);
         return CommonResult.success(memberBrandAttention);
     }
@@ -55,7 +55,7 @@ public class MemberAttentionController {
     @ApiOperation("Clear Watchlist")
     @PostMapping("/clear")
     @ResponseBody
-    public CommonResult clear(){
+    public CommonResult clear() {
         memberAttentionService.clear();
         return CommonResult.success(null);
     }

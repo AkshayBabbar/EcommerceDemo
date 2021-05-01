@@ -1,4 +1,4 @@
-package ecommerce.common.api.CommonResult;
+package ecommerce.common.api;
 
 import ecommerce.common.api.ResultCode;
 import ecommerce.common.api.exception.InternetErrorCode;
