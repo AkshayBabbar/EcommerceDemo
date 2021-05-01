@@ -5,6 +5,7 @@ import ecommerce.portal.domain.MemberBrandAttention;
 public interface MemberAttentionService {
     /**
      * subscribe for  brand attention
+     *
      * @param memberBrandAttention
      * @return
      */
@@ -12,6 +13,7 @@ public interface MemberAttentionService {
 
     /**
      * Unsubscribe/delete brand from the list
+     *
      * @param brandId
      * @return
      */
@@ -19,6 +21,7 @@ public interface MemberAttentionService {
 
     /**
      * Get Details for Brand
+     *
      * @param brandId
      * @return
      */
