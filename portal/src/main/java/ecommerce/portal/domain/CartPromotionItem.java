@@ -1,6 +1,6 @@
 package ecommerce.portal.domain;
 
-import ormMapper.model.OmsCartItem;
+import ecommerce.ormmapper.model.OmsCartItem;
 
 import java.math.BigDecimal;
 

@@ -1,4 +1,4 @@
-package ormMapper.model;
+package ecommerce.ormmapper.model;
 
 import io.swagger.annotations.ApiModelProperty;
 

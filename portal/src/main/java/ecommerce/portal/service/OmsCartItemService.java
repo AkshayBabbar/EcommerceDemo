@@ -3,7 +3,7 @@ package ecommerce.portal.service;
 import ecommerce.portal.domain.CartProduct;
 import ecommerce.portal.domain.CartPromotionItem;
 import org.springframework.transaction.annotation.Transactional;
-import ormMapper.model.OmsCartItem;
+import ecommerce.ormmapper.model.OmsCartItem;
 
 import java.util.List;
 

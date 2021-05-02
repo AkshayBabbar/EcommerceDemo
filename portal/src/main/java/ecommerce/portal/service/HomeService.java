@@ -1,8 +1,8 @@
 package ecommerce.portal.service;
 
 import ecommerce.portal.domain.HomeContentResult;
-import ormMapper.model.CmsSubject;
-import ormMapper.model.PmsProduct;
+import ecommerce.ormmapper.model.CmsSubject;
+import ecommerce.ormmapper.model.PmsProduct;
 
 import java.util.List;
 

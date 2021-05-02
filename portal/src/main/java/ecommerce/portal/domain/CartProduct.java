@@ -1,8 +1,8 @@
 package ecommerce.portal.domain;
 
-import ormMapper.model.PmsProduct;
-import ormMapper.model.PmsProductAttribute;
-import ormMapper.model.PmsSkuStock;
+import ecommerce.ormmapper.model.PmsProduct;
+import ecommerce.ormmapper.model.PmsProductAttribute;
+import ecommerce.ormmapper.model.PmsSkuStock;
 
 import java.util.List;
 

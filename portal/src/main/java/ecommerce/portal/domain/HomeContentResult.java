@@ -1,9 +1,9 @@
 package ecommerce.portal.domain;
 
-import ormMapper.model.CmsSubject;
-import ormMapper.model.PmsBrand;
-import ormMapper.model.PmsProduct;
-import ormMapper.model.SmsHomeAdvertise;
+import ecommerce.ormmapper.model.CmsSubject;
+import ecommerce.ormmapper.model.PmsBrand;
+import ecommerce.ormmapper.model.PmsProduct;
+import ecommerce.ormmapper.model.SmsHomeAdvertise;
 
 import java.util.List;
 
