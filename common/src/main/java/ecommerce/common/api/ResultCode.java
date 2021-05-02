@@ -1,7 +1,5 @@
 package ecommerce.common.api;
 
-import ecommerce.common.api.exception.InternetErrorCode;
-
 public enum ResultCode implements InternetErrorCode {
 
     SUCCESS(200,"Successfull Operation"),

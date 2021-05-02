@@ -1,4 +1,4 @@
-package ecommerce.common.api.exception;
+package ecommerce.common.api;
 
 public interface InternetErrorCode {
     long getCode();
