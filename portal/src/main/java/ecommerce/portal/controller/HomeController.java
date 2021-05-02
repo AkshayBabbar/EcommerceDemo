@@ -1,7 +1,7 @@
 package ecommerce.portal.controller;
 
 
-import ecommerce.common.api.CommonResult.CommonResult;
+import ecommerce.common.api.CommonResult;
 import ecommerce.portal.domain.HomeContentResult;
 import ecommerce.portal.service.HomeService;
 import io.swagger.annotations.Api;
