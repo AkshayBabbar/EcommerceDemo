@@ -9,16 +9,16 @@ import java.util.List;
 
 public class HomeContentResult {
 
-    //轮播广告
+    //Carousel ads
     private List<SmsHomeAdvertise> advertiseList;
-    //推荐品牌
+    //Recommended Brand
     private List<PmsBrand> brandList;
-    //当前秒杀场次
+    //Current spike
     private HomeFlashPromotion homeFlashPromotion;
-    //新品推荐
+    //New Products
     private List<PmsProduct> newProductList;
-    //人气推荐
+    //Popular recommendation
     private List<PmsProduct> hotProductList;
-    //推荐专题
+    //Recommended topics
     private List<CmsSubject> subjectList;
 }
