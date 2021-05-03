@@ -1,0 +1,68 @@
+server:
+  port: 8085
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    druid:
+      initial-size: 5 #Initialization size of connection pool
+      min-idle: 10 #Minimum number of idle connections
+      max-active: 20 #Maximum number of connections
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #Do not count these request data
+      stat-view-servlet: #Login user name and password to access the monitoring webpage
+        login-username: druid
+        login-password: druid
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mall-port
+  redis:
+    host: localhost # Redis server address
+    database: 0 # Redis database index (default is 0)
+    port: 6379 # Redis server connection port
+    password:  # Redis server connection password（Default is empty）
+    timeout: 3000ms # Connection timeout（millisecond）
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /mall
+    username: mall
+    password: mall
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+    - classpath*:com/**/mapper/*.xml
+management: Open SpringBoot Admin monitoring
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+# Custom Redis key
+redis:
+  database: mall
+  key:
+    authCode: 'ums:authCode'
+    orderId: 'oms:orderId'
+    member: 'ums:member'
+  expire:
+    authCode: 90 # Verification code expiration time
+    common: 86400 # 24 hours
+
+# Message queue definition
+rabbitmq:
+  queue:
+    name:
+      cancelOrder: cancelOrderQueue
+feign:
+  okhttp:
+    enabled: true
+ribbon:
+  ConnectTimeout: 3000 #Service request connection timeout time (milliseconds)
+  ReadTimeout: 3000 #Service request processing timeout（millisecond）
