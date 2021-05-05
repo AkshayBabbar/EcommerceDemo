@@ -2,6 +2,8 @@ package ecommerce.portal.controller;
 
 
 import ecommerce.common.api.CommonResult;
+import ecommerce.ormmapper.model.CmsSubject;
+import ecommerce.ormmapper.model.PmsProduct;
 import ecommerce.portal.domain.HomeContentResult;
 import ecommerce.portal.service.HomeService;
 import io.swagger.annotations.Api;
@@ -12,8 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ecommerce.ormmapper.model.CmsSubject;
-import ecommerce.ormmapper.model.PmsProduct;
 
 import java.util.List;
 

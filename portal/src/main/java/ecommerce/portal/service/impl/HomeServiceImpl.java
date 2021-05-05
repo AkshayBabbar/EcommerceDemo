@@ -1,5 +1,6 @@
 package ecommerce.portal.service.impl;
 
+import ecommerce.ormmapper.mapper.SmsFlashPromotionSessionMapper;
 import ecommerce.ormmapper.mapper.SmsHomeAdvertiseMapper;
 import ecommerce.ormmapper.model.CmsSubject;
 import ecommerce.ormmapper.model.PmsProduct;
@@ -19,8 +20,8 @@ public class HomeServiceImpl implements HomeService {
     @Autowired
     private SmsFlashPromotionMapper flashPromotionMapper;
     @Autowired
-    /*private SmsFlashPromotionSessionMapper promotionSessionMapper;
-    @Autowired
+    private SmsFlashPromotionSessionMapper promotionSessionMapper;
+    /*@Autowired
     private PmsProductMapper productMapper;
     @Autowired
     private PmsProductCategoryMapper productCategoryMapper;
