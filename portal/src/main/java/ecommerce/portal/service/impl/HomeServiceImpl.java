@@ -1,14 +1,12 @@
 package ecommerce.portal.service.impl;
 
-import ecommerce.ormmapper.mapper.SmsFlashPromotionSessionMapper;
-import ecommerce.ormmapper.mapper.SmsHomeAdvertiseMapper;
+import ecommerce.ormmapper.mapper.*;
 import ecommerce.ormmapper.model.CmsSubject;
 import ecommerce.ormmapper.model.PmsProduct;
 import ecommerce.portal.dao.HomeDao;
 import ecommerce.portal.domain.HomeContentResult;
 import ecommerce.portal.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import ecommerce.ormmapper.mapper.SmsFlashPromotionMapper;
 
 import java.util.List;
 
@@ -21,12 +19,12 @@ public class HomeServiceImpl implements HomeService {
     private SmsFlashPromotionMapper flashPromotionMapper;
     @Autowired
     private SmsFlashPromotionSessionMapper promotionSessionMapper;
-    /*@Autowired
+    @Autowired
     private PmsProductMapper productMapper;
     @Autowired
     private PmsProductCategoryMapper productCategoryMapper;
     @Autowired
-    private CmsSubjectMapper subjectMapper;*/
+    private CmsSubjectMapper subjectMapper;
 
     @Override
     public HomeContentResult content() {
