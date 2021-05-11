@@ -1,6 +1,8 @@
 package ecommerce.ormmapper.mapper;
 
+import ecommerce.ormmapper.model.SmsFlashPromotion;
 import ecommerce.ormmapper.model.SmsFlashPromotionExample;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public interface SmsFlashPromotionMapper {
 
     int deleteByPrimaryKey(Long id);
 
-    /*int insert(SmsFlashPromotion record);
+    int insert(SmsFlashPromotion record);
 
     int insertSelective(SmsFlashPromotion record);
 
@@ -25,5 +27,5 @@ public interface SmsFlashPromotionMapper {
 
     int updateByPrimaryKeySelective(SmsFlashPromotion record);
 
-    int updateByPrimaryKey(SmsFlashPromotion record);*/
+    int updateByPrimaryKey(SmsFlashPromotion record);
 }
