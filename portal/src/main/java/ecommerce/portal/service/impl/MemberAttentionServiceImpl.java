@@ -18,8 +18,6 @@ public class MemberAttentionServiceImpl implements MemberAttentionService {
     private UmsMemberService memberService;
 
 
-
-
     @Override
     public int subscribe(MemberBrandAttention memberBrandAttention) {
         int count = 0;
@@ -39,7 +37,7 @@ public class MemberAttentionServiceImpl implements MemberAttentionService {
     @Override
     public int unsubscribe(Long brandId) {
         UmsMember member = memberService.getCurrentMember();
-        return memberBrandAttentionRepository.deleteByMemberIdAndBrandId(member.getId(),brandId);
+        return memberBrandAttentionRepository.deleteByMemberIdAndBrandId(member.getId(), brandId);
     }
 
     @Override
