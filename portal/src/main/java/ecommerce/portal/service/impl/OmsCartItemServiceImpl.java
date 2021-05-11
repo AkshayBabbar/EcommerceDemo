@@ -12,6 +12,7 @@ import ecommerce.portal.service.OmsCartItemService;
 import ecommerce.portal.service.OmsPromotionService;
 import ecommerce.portal.service.UmsMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class OmsCartItemServiceImpl implements OmsCartItemService {
 
      @Autowired

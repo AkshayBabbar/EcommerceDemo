@@ -6,9 +6,11 @@ import ecommerce.portal.repository.MemberBrandAttentionRepository;
 import ecommerce.portal.service.MemberAttentionService;
 import ecommerce.portal.service.UmsMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
 public class MemberAttentionServiceImpl implements MemberAttentionService {
 
     @Autowired
