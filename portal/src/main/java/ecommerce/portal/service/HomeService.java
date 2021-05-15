@@ -1,5 +1,6 @@
 package ecommerce.portal.service;
 
+import ecommerce.ormmapper.model.PmsProductCategory;
 import ecommerce.portal.domain.HomeContentResult;
 import ecommerce.ormmapper.model.CmsSubject;
 import ecommerce.ormmapper.model.PmsProduct;
@@ -51,4 +52,11 @@ public interface HomeService {
      * @return
      */
     List<PmsProduct> newProductList(Integer pageNum, Integer pageSize);
+
+    /**
+     * Get product category
+     * @param parentId 0: Obtain the first-level classification; Other: Obtain the designated second-level classification
+     * @return
+     */
+    List<PmsProductCategory> getProductCateList(Long parentId);
 }

@@ -11,15 +11,12 @@ import java.util.Date;
  */
 @Document
 public class MemberBrandAttention {
-
     @Id
     private String id;
-
     @Indexed
     private Long memberId;
-    private String memberNickName;
+    private String memberNickname;
     private String memberIcon;
-
     @Indexed
     private Long brandId;
     private String brandName;
@@ -43,12 +40,12 @@ public class MemberBrandAttention {
         this.memberId = memberId;
     }
 
-    public String getMemberNickName() {
-        return memberNickName;
+    public String getMemberNickname() {
+        return memberNickname;
     }
 
-    public void setMemberNickName(String memberNickName) {
-        this.memberNickName = memberNickName;
+    public void setMemberNickname(String memberNickname) {
+        this.memberNickname = memberNickname;
     }
 
     public String getMemberIcon() {
@@ -98,4 +95,5 @@ public class MemberBrandAttention {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
 }

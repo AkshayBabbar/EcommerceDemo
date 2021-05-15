@@ -34,5 +34,4 @@ public interface CmsSubjectMapper {
     int updateByPrimaryKeyWithBLOBs(CmsSubject record);
 
     int updateByPrimaryKey(CmsSubject record);
-
 }
