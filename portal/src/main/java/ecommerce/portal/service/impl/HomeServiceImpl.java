@@ -4,17 +4,17 @@ import com.github.pagehelper.PageHelper;
 import ecommerce.ormmapper.mapper.*;
 import ecommerce.ormmapper.model.*;
 import ecommerce.portal.dao.HomeDao;
+import ecommerce.portal.domain.FlashPromotionProduct;
 import ecommerce.portal.domain.HomeContentResult;
+import ecommerce.portal.domain.HomeFlashPromotion;
 import ecommerce.portal.service.HomeService;
 import ecommerce.portal.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Date;
 import java.util.List;
 
-@Service
 public class HomeServiceImpl implements HomeService {
     @Autowired
     private SmsHomeAdvertiseMapper advertiseMapper;
@@ -34,11 +34,68 @@ public class HomeServiceImpl implements HomeService {
     @Override
     public HomeContentResult content() {
         HomeContentResult result = new HomeContentResult();
-        Date now = new Date();
-        SmsFlashPromotion flashPromotion = getFlashPromotion(now);
+        //Get homepage ad
+        result.setAdvertiseList(getHomeAdvertiseList());
+        //Get recommended brands
+        result.setBrandList(homeDao.getRecommendBrandList(0, 6));
+        //Get spike information
+        result.setHomeFlashPromotion(getHomeFlashPromotion());
+        //Get new product recommendations
+        result.setNewProductList(homeDao.getNewProductList(0, 4));
+        //Get popular recommendations
+        result.setHotProductList(homeDao.getHotProductList(0, 4));
+        //Get recommended topics
+        result.setSubjectList(homeDao.getRecommendSubjectList(0, 4));
+        return result;
 
-        return null;
     }
+
+    @Override
+    public List<PmsProduct> recommedProductList(Integer pageSize, Integer pageNum) {
+        PageHelper.startPage(pageNum, pageSize);
+        PmsProductExample example = new PmsProductExample();
+        example.createCriteria()
+                .andDeleteStatusEqualTo(0)
+                .andPublishStatusEqualTo(1);
+
+        return productMapper.selectByExample(example);
+
+    }
+
+    private List<SmsHomeAdvertise> getHomeAdvertiseList() {
+        SmsHomeAdvertiseExample example = new SmsHomeAdvertiseExample();
+        example.createCriteria().andTypeEqualTo(1).andStatusEqualTo(1);
+        example.setOrderByClause("sort desc");
+        return advertiseMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<CmsSubject> getSubjectList(Long categoryId, Integer pageSize, Integer pageNum) {
+
+        PageHelper.startPage(pageNum, pageSize);
+        CmsSubjectExample example = new CmsSubjectExample();
+        CmsSubjectExample.Criteria criteria = example.createCriteria();
+        criteria.andShowStatusEqualTo(1);
+        if (categoryId != null) {
+            criteria.andCategoryIdEqualTo(categoryId);
+        }
+        return subjectMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<PmsProduct> hotProductList(Integer pageNum, Integer pageSize) {
+
+        int offset = pageSize * (pageNum - 1);
+        return homeDao.getHotProductList(offset, pageSize);
+    }
+
+    @Override
+    public List<PmsProduct> newProductList(Integer pageNum, Integer pageSize) {
+
+        int offset = pageSize * (pageNum - 1);
+        return homeDao.getNewProductList(offset, pageSize);
+    }
+
     @Override
     public List<PmsProductCategory> getProductCateList(Long parentId) {
         PmsProductCategoryExample example = new PmsProductCategoryExample();
@@ -49,34 +106,31 @@ public class HomeServiceImpl implements HomeService {
         return productCategoryMapper.selectByExample(example);
     }
 
-    @Override
-    public List<CmsSubject> getSubjectList(Long cateId, Integer pageSize, Integer pageNum) {
-        PageHelper.startPage(pageNum,pageSize);
-        CmsSubjectExample example = new CmsSubjectExample();
-        CmsSubjectExample.Criteria criteria = example.createCriteria();
-        criteria.andShowStatusEqualTo(1);
-        if(cateId!=null){
-            criteria.andCategoryIdEqualTo(cateId);
+    private HomeFlashPromotion getHomeFlashPromotion() {
+        HomeFlashPromotion homeFlashPromotion = new HomeFlashPromotion();
+
+        Date date = new Date();
+        SmsFlashPromotion flashPromotion = getFlashPromotion(date);
+        if (flashPromotion != null) {
+            //获取当前秒杀场次
+            SmsFlashPromotionSession flashPromotionSession = getFlashPromotionSession(date);
+            if (flashPromotionSession != null) {
+                homeFlashPromotion.setStartTime(flashPromotionSession.getStartTime());
+                homeFlashPromotion.setEndTime(flashPromotionSession.getEndTime());
+                //获取下一个秒杀场次
+                SmsFlashPromotionSession nextSession = getNextFlashPromotionSession(homeFlashPromotion.getStartTime());
+                if (nextSession != null) {
+                    homeFlashPromotion.setNextStartTime(nextSession.getStartTime());
+                    homeFlashPromotion.setNextEndTime(nextSession.getEndTime());
+                }
+                //获取秒杀商品
+                List<FlashPromotionProduct> flashProductList = homeDao.getFlashProductList(flashPromotion.getId(), flashPromotionSession.getId());
+                homeFlashPromotion.setProductList(flashProductList);
+            }
         }
-        return subjectMapper.selectByExample(example);
+        return homeFlashPromotion;
     }
 
-    @Override
-    public List<PmsProduct> hotProductList(Integer pageNum, Integer pageSize) {
-        int offset = pageSize * (pageNum - 1);
-        return homeDao.getHotProductList(offset, pageSize);
-    }
-
-    @Override
-    public List<PmsProduct> recommedProductList(Integer pageSize, Integer pageNum) {
-        return null;
-    }
-
-    @Override
-    public List<PmsProduct> newProductList(Integer pageNum, Integer pageSize) {
-        int offset = pageSize * (pageNum - 1);
-        return homeDao.getNewProductList(offset, pageSize);
-    }
 
     private SmsFlashPromotionSession getNextFlashPromotionSession(Date date) {
         SmsFlashPromotionSessionExample sessionExample = new SmsFlashPromotionSessionExample();
@@ -88,13 +142,6 @@ public class HomeServiceImpl implements HomeService {
             return promotionSessionList.get(0);
         }
         return null;
-    }
-
-    private List<SmsHomeAdvertise> getHomeAdvertiseList() {
-        SmsHomeAdvertiseExample example = new SmsHomeAdvertiseExample();
-        example.createCriteria().andTypeEqualTo(1).andStatusEqualTo(1);
-        example.setOrderByClause("sort desc");
-        return advertiseMapper.selectByExample(example);
     }
 
     private SmsFlashPromotion getFlashPromotion(Date date) {
@@ -123,4 +170,5 @@ public class HomeServiceImpl implements HomeService {
         }
         return null;
     }
+
 }
