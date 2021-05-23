@@ -4,6 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Swagger custom configuration
+ */
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Builder

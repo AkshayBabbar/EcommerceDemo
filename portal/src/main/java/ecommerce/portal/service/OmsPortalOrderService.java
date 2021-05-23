@@ -22,9 +22,11 @@ public interface OmsPortalOrderService {
 
     void confirmReceiveOrder(Long orderId);
 
+    @Transactional
     Integer paySuccess(Long orderId, Integer payType);
 
-    void cancelTimeOutOrder();
+    @Transactional
+    Integer cancelTimeOutOrder();
 
     void sendDelayMessageCancelOrder(Long orderId);
 
